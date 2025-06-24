@@ -4,7 +4,7 @@ A browser extension for Chrome to aid in the development and testing of [n8n](ht
 
 ## The Problem It Solves
 
-When testing complex n8n nodes, it can be cumbersome to repeatedly copy the output data for use in other nodes or for external testing. This extension simplifies the process by providing a persistent, browsable storage for your test executions right in your browser.
+When testing complex n8n nodes, it can be cumbersome to repeatedly copy and paste the output data for use in other nodes or for testing. Sometimes, N8N does not even allow test runs with data pinned. This extension simplifies the process by providing a persistent, browsable storage for your test executions right in your browser.
 
 ## Features
 
