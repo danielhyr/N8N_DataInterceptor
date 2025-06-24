@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n Data Tool</title>
+    <script src="tailwindcss.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            width: 380px;
+            background-color: #f3f4f6;
+        }
+        .json-output {
+            background-color: #1f2937;
+            color: #d1d5db;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        .btn {
+             @apply w-full font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150;
+        }
+        .btn-primary {
+             @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+        }
+        .btn-secondary {
+             @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+        }
+         .btn-success {
+             @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+        }
+        .node-item-btn {
+            @apply w-full text-left p-2 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none flex justify-between items-center;
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <div class="space-y-6">
+        <!-- Live Data Section -->
+        <div class="space-y-3 p-3 bg-white rounded-lg shadow">
+            <h1 class="text-lg font-bold text-gray-800 border-b pb-2">Live Node Data</h1>
+            <div>
+                <h2 class="text-xs font-bold text-gray-500 uppercase">Workflow</h2>
+                <p id="live-workflow-name" class="text-gray-700 font-medium truncate">Checking...</p>
+            </div>
+            <div>
+                <h2 class="text-xs font-bold text-gray-500 uppercase">Active Node</h2>
+                <p id="live-node-name" class="text-gray-700 font-medium truncate">No node selected</p>
+            </div>
+            <pre id="live-json-data" class="json-output">Run a node test to see live data.</pre>
+            <div class="flex space-x-2 pt-2">
+                 <button id="refresh-view-btn" class="btn btn-secondary">Refresh</button>
+                 <button id="save-data-btn" class="btn btn-success" disabled>Save Test</button>
+                 <button id="copy-live-json-btn" class="btn btn-primary" disabled>Copy</button>
+            </div>
+        </div>
+
+        <!-- Saved Tests Section -->
+        <div class="space-y-3 p-3 bg-white rounded-lg shadow">
+            <h1 class="text-lg font-bold text-gray-800 border-b pb-2">Saved Tests</h1>
+             <div class="relative">
+                <label for="workflow-dropdown-btn" class="block text-sm font-medium text-gray-700">Select Workflow</label>
+                <button id="workflow-dropdown-btn" class="mt-1 w-full text-left p-2 bg-gray-200 rounded-md flex justify-between items-center">
+                    <span id="workflow-dropdown-label">No saved workflows</span>
+                    <svg class="h-5 w-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="workflow-dropdown-list" class="absolute hidden w-full bg-white rounded-md shadow-lg z-10 mt-1 border border-gray-200">
+                    <!-- Workflow options will be injected here -->
+                </div>
+            </div>
+            <div class="relative">
+                <label for="node-dropdown-btn" class="block text-sm font-medium text-gray-700">Select Saved Node</label>
+                 <button id="node-dropdown-btn" class="mt-1 w-full text-left p-2 bg-indigo-100 rounded-md flex justify-between items-center">
+                    <span id="node-dropdown-label">Select a workflow first</span>
+                    <svg class="h-5 w-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                 <div id="node-dropdown-list" class="absolute hidden w-full bg-white rounded-md shadow-lg z-10 mt-1 border border-gray-200">
+                    <!-- Saved Node options will be injected here -->
+                </div>
+            </div>
+             <div class="mt-2">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xs font-bold text-gray-500 uppercase">Saved JSON Data</h2>
+                    <button id="copy-saved-json-btn" class="btn btn-primary text-xs py-1 px-3 w-auto" disabled>Copy</button>
+                </div>
+                <pre id="saved-json-data" class="json-output mt-1">Select a workflow and node to view data.</pre>
+            </div>
+        </div>
+    </div>
+    <p id="status-message" class="text-xs text-center text-gray-500 h-4 mt-2"></p>
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "n8n Data Interceptor",
+    "version": "3.2",
+    "description": "Intercepts and displays n8n node execution data via the debugger API.",
+    "permissions": [
+      "debugger",
+      "storage",
+      "scripting",
+      "tabs"
+    ],
+    "host_permissions": [
+      "*://*.n8n.cloud/*",
+      "http://localhost:5678/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "icons": {
+        "128": "icon_128.png"
+      }
+  }
+  
